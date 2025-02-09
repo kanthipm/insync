@@ -81,7 +81,7 @@ const DataVisualization: React.FC<DataVisualizationProps> = ({ csvFile }) => {
     'hrv_trend.csv': 'Heart Rate Variability (ms)',
     'respiratory.csv': 'Respiratory Rate (breaths/min)',
     'sleep_hours.csv': 'Sleep Hours',
-    'wrist_temp.csv': 'Wrist Temperature',
+    'wrist_temp.csv': 'Wrist Temperature (°F)',
   } as {[key: string]: string};
 
   const dataColumn = dataColumnMap[csvFile] || Object.keys(csvData[0] || {})[1];

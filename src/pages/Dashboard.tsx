@@ -52,26 +52,6 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="csvFile" className="block text-gray-700 text-sm font-bold mb-2">
-            Select CSV File:
-          </label>
-          <select
-            id="csvFile"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={selectedCsvFile}
-            onChange={(e) => setSelectedCsvFile(e.target.value)}
-          >
-            {csvFiles.map((file) => (
-              <option key={file} value={file}>
-                {file}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <DataVisualization csvFile={selectedCsvFile} />
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-white p-6 rounded-lg shadow">
             <div className="flex items-center gap-4 mb-4">
@@ -162,6 +142,26 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+
+        <div className="mb-4">
+          <label htmlFor="csvFile" className="block text-gray-700 text-sm font-bold mb-2">
+            Select CSV File:
+          </label>
+          <select
+            id="csvFile"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            value={selectedCsvFile}
+            onChange={(e) => setSelectedCsvFile(e.target.value)}
+          >
+            {csvFiles.map((file) => (
+              <option key={file} value={file}>
+                {file}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <DataVisualization csvFile={selectedCsvFile} />
       </div>
     </div>
   );
