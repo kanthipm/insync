@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { patients } from '../data/mychart';
+import DataVisualization from '../components/DataVisualization';
 import { Activity, Heart, Weight, Calendar, Syringe, AlertCircle, History, User, LogOut } from 'lucide-react';
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const currentPatientId = sessionStorage.getItem('currentPatientId');
   const patientData = currentPatientId ? patients[currentPatientId] : null;
+  const [selectedCsvFile, setSelectedCsvFile] = useState('blood_oxygen.csv');
+  const csvFiles = [
+    'blood_oxygen.csv',
+    'exercise_minutes.csv',
+    'heart_rate.csv',
+    'hrv_trend.csv',
+    'respiratory.csv',
+    'sleep_hours.csv',
+    'wrist_temp.csv',
+  ];
 
   if (!patientData) {
     navigate('/login');
@@ -40,6 +51,26 @@ const Dashboard = () => {
             </button>
           </div>
         </div>
+
+        <div className="mb-4">
+          <label htmlFor="csvFile" className="block text-gray-700 text-sm font-bold mb-2">
+            Select CSV File:
+          </label>
+          <select
+            id="csvFile"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            value={selectedCsvFile}
+            onChange={(e) => setSelectedCsvFile(e.target.value)}
+          >
+            {csvFiles.map((file) => (
+              <option key={file} value={file}>
+                {file}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <DataVisualization csvFile={selectedCsvFile} />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-white p-6 rounded-lg shadow">
